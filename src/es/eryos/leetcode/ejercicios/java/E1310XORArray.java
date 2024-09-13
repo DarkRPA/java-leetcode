@@ -25,16 +25,15 @@ public class E1310XORArray {
                 continue;
             }
 
-            result[i] = getXORQuery(queries[i][0], 0, queries[i][1], arr);
+            result[i] = arr[queries[i][0]];
+            for(int subIndice = queries[i][0]+1; subIndice <= queries[i][1]; subIndice++){
+                result[i] ^= arr[subIndice];
+            }
+
             mapaCache.put(claveMap, result[i]);
             
         }
 
         return result;
-    }
-
-    public static int getXORQuery(int i, int bitActual, int max, int[] arr){
-        if(i < max) return getXORQuery(i+1, (bitActual==0)?arr[i]:(bitActual ^ arr[i]), max, arr);
-        return bitActual ^ arr[i];
     }
 }
